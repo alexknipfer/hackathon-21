@@ -1,9 +1,11 @@
 import Head from "next/head";
 
+import DefaultLayout from "../layouts/DefaultLayout";
+
 export default function Home() {
   return (
-    <div>
+    <DefaultLayout>
       <h1>Mound Pro</h1>
-    </div>
+    </DefaultLayout>
   );
 }

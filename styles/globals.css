@@ -18,3 +18,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+#__next {
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

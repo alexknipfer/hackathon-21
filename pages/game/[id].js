@@ -1,12 +1,13 @@
 import { useRouter } from "next/router";
+import DefaultLayout from "../../layouts/DefaultLayout";
 
 export default function Game() {
   const router = useRouter();
   const { id } = router.query;
 
   return (
-    <div>
+    <DefaultLayout>
       <h1>GAME: {id}</h1>
-    </div>
+    </DefaultLayout>
   );
 }

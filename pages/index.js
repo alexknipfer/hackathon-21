@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import useSWR from "swr";
 import GameSchedule from "../components/gameSchedule.js";
 
@@ -44,11 +44,14 @@ export default function Home() {
           </button>
         </form>
       ) : (
-        <h1>Mound Pro</h1>
+        <Fragment>
+          {data.map((game, index) => {
+            return (
+              <GameSchedule key={`${game.startDate}-${index}`} {...game} />
+            );
+          })}
+        </Fragment>
       )}
-      {data.map((game) => {
-        return <GameSchedule {...game} />;
-      })}
     </DefaultLayout>
   );
 }

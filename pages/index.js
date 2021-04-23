@@ -7,10 +7,16 @@ export default function Home() {
   const [value, setValue] = useState("");
   const { user, updateUser } = useUser();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    updateUser(value);
+  };
+
   return (
     <DefaultLayout>
       {!user ? (
-        <div className="flex flex-col">
+        <form onSubmit={handleSubmit} className="flex flex-col">
           <input
             type="text"
             value={value}
@@ -19,13 +25,13 @@ export default function Home() {
             onChange={(e) => setValue(e.target.value)}
           />
           <button
+            type="submit"
             className="bg-mlb-blue text-white active:bg-mlb-blue font-bold uppercase text-xs px-4 py-3 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 mt-4"
             type="button"
-            onClick={() => updateUser(value)}
           >
             Login
           </button>
-        </div>
+        </form>
       ) : (
         <h1>Mound Pro</h1>
       )}

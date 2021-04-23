@@ -1,10 +1,14 @@
+import { useRouter } from "next/router";
+
 function GameSchedule({
+  id,
   homeTeam,
   homeTeamLogo,
   awayTeam,
   awayTeamLogo,
   startDate,
 }) {
+  const router = useRouter();
   return (
     <div className="flex justify-between items-center pt-5 w-full">
       <div className="flex">
@@ -24,6 +28,9 @@ function GameSchedule({
         <button
           className="flex-1 bg-mlb-blue text-white active:bg-mlb-blue font-bold uppercase text-xs p-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           type="button"
+          onClick={() => {
+            router.push(`/game/${id}`);
+          }}
         >
           Play
         </button>

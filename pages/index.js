@@ -7,7 +7,7 @@ import { useUser } from "../provider/User";
 export default function Home() {
   // const { data } = useSWR(endpointHere)
   const [value, setValue] = useState("");
-  const { user, updateUser } = useUser();
+  const { user, login } = useUser();
 
   // if (!data) {
   //   // Data is loading....
@@ -16,7 +16,7 @@ export default function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    updateUser(value);
+    login(value);
   };
 
   return (

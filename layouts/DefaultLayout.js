@@ -7,7 +7,7 @@ export default function DefaultLayout({ children }) {
       <nav className="bg-mlb-blue h-16 flex justify-center py-2">
         <Image width={90} height={110} src="/static/images/mlb_logo.png" />
       </nav>
-      <main className="flex flex-col px-5 py-10">{children}</main>
+      <main className="flex flex-col px-3 py-5">{children}</main>
     </Fragment>
   );
 }

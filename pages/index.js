@@ -1,11 +1,17 @@
 import Head from "next/head";
 import { useState } from "react";
+// import useSWR from "swr";
 import DefaultLayout from "../layouts/DefaultLayout";
 import { useUser } from "../provider/User";
 
 export default function Home() {
+  // const { data } = useSWR(endpointHere)
   const [value, setValue] = useState("");
   const { user, updateUser } = useUser();
+
+  // if (!data) {
+  //   // Data is loading....
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();

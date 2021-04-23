@@ -21,7 +21,6 @@ export default function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("HANDLE SUBMIT! ", value);
     login(value);
   };
 

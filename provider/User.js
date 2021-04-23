@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { postRequest } from "../lib/fetch";
 
 const UserContext = createContext();
 
@@ -22,21 +23,13 @@ export const UserProvider = ({ children }) => {
     setUser("");
   };
 
-  const login = async (username) => {
+  const login = async (name) => {
     try {
-      const response = await fetch(
-        "https://hackathon-ascendum.ue.r.appspot.com/v1/api/user",
-        {
-          headers: new Headers({ "Content-Type": "application/json" }),
-          method: "POST",
-          body: JSON.stringify({ name: username }),
-        }
-      );
-      const res = await response.json();
-      localStorage.setItem(LOCAL_STORAGE_USER_KEY, res.name);
-      setUser(res.name);
+      const response = await postRequest("/user", { name });
+      localStorage.setItem(LOCAL_STORAGE_USER_KEY, response.name);
+      setUser(response.name);
     } catch (error) {
-      console.log("ERROR: ", error);
+      alert(error.message);
     }
   };
 

@@ -16,6 +16,7 @@ export default function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    console.log("HANDLE SUBMIT! ", value);
     login(value);
   };
 
@@ -33,7 +34,6 @@ export default function Home() {
           <button
             type="submit"
             className="bg-mlb-blue text-white active:bg-mlb-blue font-bold uppercase text-xs px-4 py-3 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 mt-4"
-            type="button"
           >
             Login
           </button>

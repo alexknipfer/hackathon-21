@@ -8,7 +8,7 @@ import { useUser } from "../provider/User";
 
 export default function Home() {
   const { data } = useSWR(
-    " https://hackathon-ascendum.ue.r.appspot.com/v1/api/game/all"
+    "https://hackathon-ascendum.ue.r.appspot.com/v1/api/game/all"
   );
   const [value, setValue] = useState("");
   const { user, login } = useUser();

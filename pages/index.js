@@ -1,17 +1,22 @@
 import Head from "next/head";
 import { useState } from "react";
-// import useSWR from "swr";
+import useSWR from "swr";
+import GameSchedule from "../components/gameSchedule.js";
+
 import DefaultLayout from "../layouts/DefaultLayout";
 import { useUser } from "../provider/User";
 
 export default function Home() {
-  // const { data } = useSWR(endpointHere)
+  const { data } = useSWR(
+    " https://hackathon-ascendum.ue.r.appspot.com/v1/api/game/all"
+  );
   const [value, setValue] = useState("");
   const { user, login } = useUser();
 
-  // if (!data) {
-  //   // Data is loading....
-  // }
+  if (!data) {
+    // Data is loading....
+    return <div>Data is loading... </div>;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,6 +46,9 @@ export default function Home() {
       ) : (
         <h1>Mound Pro</h1>
       )}
+      {data.map((game) => {
+        return <GameSchedule {...game} />;
+      })}
     </DefaultLayout>
   );
 }

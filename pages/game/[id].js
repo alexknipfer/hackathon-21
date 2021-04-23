@@ -1,20 +1,48 @@
 import { useRouter } from "next/router";
 import ImageMapper from "react-image-mapper";
+import useSWR from "swr";
 
 import UserScore from "../../components/userScore";
 import DefaultLayout from "../../layouts/DefaultLayout";
+import { postRequest } from "../../lib/fetch";
+import { useUser } from "../../provider/User";
 
 export default function Game() {
   const router = useRouter();
   const { id } = router.query;
+  const { user } = useUser();
+  const { data } = useSWR(
+    id
+      ? `https://hackathon-ascendum.ue.r.appspot.com/v1/api/game/${id}/moundGame`
+      : null
+  );
+
+  const handleSubmitScore = async (submission) => {
+    if (!data) {
+      return;
+    }
+
+    const currentRoundId =
+      data.moundGameResults[data.moundGameResults.length - 1].id;
+
+    try {
+      await postRequest(`/game/moundResult/${currentRoundId}/submit`, {
+        username: user,
+        submission,
+      });
+
+      alert("You have submitted your score!");
+    } catch (error) {
+      alert(`Error: ${error}`);
+    }
+  };
 
   return (
     <DefaultLayout>
       <div className="flex justify-center">
         <ImageMapper
-          onClick={(area) => console.log("AREA: ", area)}
-          onImageClick={() => console.log("CLICKED OUTSIDE IMAGE!!!")}
-          onLoad={() => console.log("LOADED")}
+          onClick={() => handleSubmitScore("ON")}
+          onImageClick={() => handleSubmitScore("OFF")}
           width={320}
           active={false}
           src="/static/images/baseball.png"

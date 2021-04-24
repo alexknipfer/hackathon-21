@@ -1,22 +1,18 @@
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import { useUser } from "../provider/User";
-function UserScore() {
+function UserScore({ moundGameId }) {
   const router = useRouter();
   const { user } = useUser();
   const { id } = router.query;
   const { data } = useSWR(
     id && user
-      ? `https://hackathon-ascendum.ue.r.appspot.com/v1/api/game/moundGame/${id}/score?userName=${user}`
+      ? `https://hackathon-ascendum.ue.r.appspot.com/v1/api/game/moundGame/${moundGameId}/score?userName=${user}`
       : null
   );
 
-  if (!data) {
-    return null;
-  }
-
   const getScoreForIndex = (index) => {
-    if (!data[index]) {
+    if (!data || !data[index]) {
       return "";
     } else if (data[index].score === 0) {
       return "0";
@@ -41,26 +37,26 @@ function UserScore() {
             <th>9th</th>
           </tr>
           <tr>
-            <td className="border-2  pl-1">{getScoreForIndex(0)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(2)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(4)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(6)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(8)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(10)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(12)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(14)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(16)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(0)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(2)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(4)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(6)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(8)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(10)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(12)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(14)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(16)}</td>
           </tr>
           <tr>
-            <td className="border-2  pl-1">{getScoreForIndex(1)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(3)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(5)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(7)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(9)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(11)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(13)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(15)}</td>
-            <td className="border-2  pl-1">{getScoreForIndex(17)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(1)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(3)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(5)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(7)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(9)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(11)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(13)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(15)}</td>
+            <td className="border-2  pl-1 h-6">{getScoreForIndex(17)}</td>
           </tr>
         </tbody>
       </table>

@@ -17,6 +17,10 @@ export default function Game() {
       : null
   );
 
+  if (!data) {
+    return null;
+  }
+
   const handleSubmitScore = async (submission) => {
     if (!data) {
       return;
@@ -39,6 +43,15 @@ export default function Game() {
 
   return (
     <DefaultLayout>
+      <div>
+        <div className="flex justify-center pb-4">
+          <img className="w-6 h-6" src={data.baseballGame.awayTeamLogo} />
+          <div className="pl-2">{data.baseballGame.awayTeam}</div>
+          <div className="mx-5">@</div>
+          <img className="w-6 h-6" src={data.baseballGame.homeTeamLogo} />
+          <div className="pl-2">{data.baseballGame.homeTeam}</div>
+        </div>
+      </div>
       <div className="flex justify-center">
         <ImageMapper
           onClick={() => handleSubmitScore("ON")}
@@ -58,7 +71,7 @@ export default function Game() {
           }}
         />
       </div>
-      <UserScore />
+      <UserScore moundGameId={data.id} />
     </DefaultLayout>
   );
 }

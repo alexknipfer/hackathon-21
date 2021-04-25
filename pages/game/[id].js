@@ -52,6 +52,11 @@ export default function Game() {
           <div className="pl-2">{data.baseballGame.homeTeam}</div>
         </div>
       </div>
+      <div>
+        <div className="flex justify-center pb-4">
+          Hello {user}, Select your pick on or off the mound!
+        </div>
+      </div>
       <div className="flex justify-center">
         <ImageMapper
           onClick={() => handleSubmitScore("ON")}
@@ -71,7 +76,11 @@ export default function Game() {
           }}
         />
       </div>
-      <UserScore moundGameId={data.id} />
+      <UserScore
+        moundGameId={data.id}
+        homeTeam={data.baseballGame.homeTeam}
+        awayTeam={data.baseballGame.awayTeam}
+      />
     </DefaultLayout>
   );
 }

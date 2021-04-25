@@ -44,14 +44,12 @@ export default function Home() {
         </form>
       ) : (
         <Fragment>
+          <h1 className="text-lg text-gray-700 font-bold">
+            {new Date().toDateString()}
+          </h1>
           {data.map((game, index) => {
             return (
-              <Fragment key={`${game.startDate}-${index}`}>
-                <h1 className="text-lg text-gray-700 font-bold">
-                  {new Date().toDateString()}
-                </h1>
-                <GameSchedule {...game} />
-              </Fragment>
+              <GameSchedule key={`${game.startDate}-${index}`} {...game} />
             );
           })}
         </Fragment>

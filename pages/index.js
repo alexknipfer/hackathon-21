@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Fragment, useState } from "react";
 import useSWR from "swr";
 import GameSchedule from "../components/gameSchedule.js";
+import Spinner from "../components/spinner.js";
 
 import DefaultLayout from "../layouts/DefaultLayout";
 import { useUser } from "../provider/User";
@@ -14,8 +15,7 @@ export default function Home() {
   const { user, login } = useUser();
 
   if (!data) {
-    // Data is loading....
-    return <div>Data is loading... </div>;
+    return <Spinner />;
   }
 
   const handleSubmit = (e) => {

@@ -56,7 +56,7 @@ function UserScore({ moundGameId, homeTeam, awayTeam }) {
             <th>Tot</th>
           </tr>
           <tr>
-            <td className="border-2  pl-1 h-6 w-24">{awayTeam}</td>
+            <td className="border-2  pl-1 h-6 w-16">{awayTeam}</td>
             <td className="border-2  pl-1 h-6">{getScoreForIndex(0)}</td>
             <td className="border-2  pl-1 h-6">{getScoreForIndex(2)}</td>
             <td className="border-2  pl-1 h-6">{getScoreForIndex(4)}</td>

@@ -29,9 +29,9 @@ function UserScore({ moundGameId, homeTeam, awayTeam }) {
         (i % 2 == 0 ? evenOnes : oddOnes).push(data[i].score);
       }
       if (isHomeTeam) {
-        return evenOnes.reduce((a, b) => a + b, 0);
-      } else {
         return oddOnes.reduce((a, b) => a + b, 0).toString();
+      } else {
+        return evenOnes.reduce((a, b) => a + b, 0);
       }
     } else {
       return "";

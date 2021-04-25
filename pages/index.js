@@ -46,7 +46,12 @@ export default function Home() {
         <Fragment>
           {data.map((game, index) => {
             return (
-              <GameSchedule key={`${game.startDate}-${index}`} {...game} />
+              <Fragment key={`${game.startDate}-${index}`}>
+                <h1 className="text-lg text-gray-700 font-bold">
+                  {new Date().toDateString()}
+                </h1>
+                <GameSchedule {...game} />
+              </Fragment>
             );
           })}
         </Fragment>

@@ -8,7 +8,8 @@ function UserScore({ moundGameId, homeTeam, awayTeam }) {
   const { data } = useSWR(
     id && user
       ? `https://hackathon-ascendum.ue.r.appspot.com/v1/api/game/moundGame/${moundGameId}/score?userName=${user}`
-      : null
+      : null,
+    { refreshInterval: 5000 }
   );
 
   const getScoreForIndex = (index) => {

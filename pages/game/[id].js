@@ -14,7 +14,8 @@ export default function Game() {
   const { data } = useSWR(
     id
       ? `https://hackathon-ascendum.ue.r.appspot.com/v1/api/game/${id}/moundGame`
-      : null
+      : null,
+    { refreshInterval: 5000 }
   );
 
   if (!data) {
